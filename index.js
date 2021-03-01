@@ -20,7 +20,7 @@ const {
     GITHUB_USER: githubUser,
     GITHUB_PASS: githubPass
 } = process.env
-const archiveloader = process.env.NODE_ENV === 'production' ? 'http://archiveloader:8989/' : 'http://localhost:8989/'
+const archiveloader = process.env.NODE_ENV === 'production' ? 'https://sbnpds4.psi.edu/archive-loader/' : 'http://localhost:8989/'
 
 var repository
 rmRf(DIR, bootstrap)
@@ -30,7 +30,7 @@ async function bootstrap() {
 }
 
 async function mainLoop() {
-    console.log('Pulling export')
+    console.log(`Pulling export from ${archiveloader}`)
     request.get(`${archiveloader}export/all`)
         .on('error', (err) => {
             console.log(err.message)
